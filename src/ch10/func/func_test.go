@@ -1,6 +1,7 @@
 package func_test
 
 import (
+	"fmt"
 	"math/rand"
 	"testing"
 )
@@ -49,4 +50,16 @@ func someParam(op ...int) int {
 		result += value
 	}
 	return result
+}
+
+func clear() {
+	fmt.Println("clear resources")
+}
+
+func TestDefer(t *testing.T) {
+	defer clear()
+	t.Log("start before clear")
+
+	//defer 仍会执行
+	panic("error")
 }
